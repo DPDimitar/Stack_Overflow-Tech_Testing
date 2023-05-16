@@ -1,0 +1,49 @@
+<header class="mb-5">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/questions/">Stack Overflow</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/questions/myquestions">Mine Stack</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/questions/hotquestions">Hot Stack</a>
+                    </li><li class="nav-item">
+                        <a class="nav-link" href="/questions/post">Post Stack Question</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/login">Prijava</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/register">Registracija</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/profile">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/logout">Odjava</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <form action="/answers/{{qid}}/post" method="post">
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInput">Description</label>
+                <textarea type="text" class="form-control mb-2" required name="description" id="inlineFormInput" placeholder="This is the answer"></textarea>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

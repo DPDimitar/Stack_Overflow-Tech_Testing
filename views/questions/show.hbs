@@ -1,0 +1,185 @@
+<header class="mb-5">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/questions/">Stack Overflow</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/questions/myquestions">Mine Stack</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/questions/hotquestions">Hot Stack</a>
+                    </li><li class="nav-item">
+                        <a class="nav-link" href="/questions/post">Post Stack Question</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/login">Prijava</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/register">Registracija</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/profile">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/logout">Odjava</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <h3>{{data.title}}</h3>
+                    <p class="card-text">{{data.denscription}}</p>
+                    <p>Tagi: {{#each data.tags}}
+                        <span><b>{{this}}</b>,</span>
+                    {{/each}}</p>
+                    <p>
+                        <small class="text-muted">{{data.datetime}}</small>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <img src="/images/{{data.userid.photo_path}}" height="30" width="30" class="rounded"
+                         alt="No Photo">
+                    {{data.userid.username}}
+
+                    <form class="d-inline pl-2" action="/questions/{{data._id}}/delete" method="post">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+
+                    <a href="/answers/{{data._id}}/post" class="btn btn-success">Answer</a>
+
+                    <a href="/questions/{{data._id}}/comment" class="btn btn-info">Comment</a>
+
+
+                </div>
+                <div class="card-footer">
+                    <h4>Komentari</h4>
+                    {{#each data.comments}}
+                        <span class="d-block" style="font-size: 12px">{{this}}</span>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <h2>Answers</h2>
+    </div>
+    {{#if correctAnswer}}
+        <div class="row justify-content-center p-5 pt-0 pb-0">
+            <div class="col-md-7">
+                <div style="background: aquamarine" class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <p class="card-text">{{correctAnswer.description}}</p>
+                        <p>
+                            <small class="text-muted">{{correctAnswer.datetime}}</small>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <img src="/images/{{correctAnswer.uid.photo_path}}" height="30" width="30" class="rounded"
+                             alt="No Photo">
+                        {{correctAnswer.uid.username}}
+
+                        <form class="d-inline pl-2" action="/answers/{{correctAnswer._id}}/delete" method="post">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+
+                        <a href="/answers/{{correctAnswer._id}}/comment" class="btn btn-info">Comment</a>
+
+                        <form class="d-inline pl-2" action="/answers/{{correctAnswer._id}}/vote" method="post">
+                            <button style="font-weight: 800; font-size: 18px" type="submit"
+                                    class="btn btn-outline-success">+
+                            </button>
+                            <input type="hidden" name="vote" value="upvote">
+                        </form>
+
+                        <form class="d-inline pl-2" action="/answers/{{correctAnswer._id}}/vote" method="post">
+                            <button style="font-weight: 800; font-size: 18px" type="submit"
+                                    class="btn btn-outline-danger">-
+                            </button>
+                            <input type="hidden" name="vote" value="downvote">
+                        </form>
+
+                        <div class="ml-2">
+                            <span class="d-inline text-success">{{correctAnswerUPVotes.length}}</span>/<span
+                                class="d-inline text-danger">{{correctAnswerDOWNVotes.length}}</span>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <h4>Komentari</h4>
+                        {{#each correctAnswer.comments}}
+                            <span class="d-block" style="font-size: 12px">{{this}}</span>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+    {{#each answers}}
+        <div class="row justify-content-center p-5 pt-0 pb-0">
+            <div class="col-md-7">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <p class="card-text">{{this.description}}</p>
+                        <p>
+                            <small class="text-muted">{{this.datetime}}</small>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <img src="/images/{{this.uid.photo_path}}" height="30" width="30" class="rounded"
+                             alt="No Photo">
+                        {{this.uid.username}}
+
+                        <form class="d-inline pl-2" action="/answers/{{this._id}}/delete" method="post">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+
+                        <form class="d-inline pl-2" action="/answers/{{this._id}}/update" method="post">
+                            <button type="submit" class="btn btn-success">Correct</button>
+                        </form>
+
+                        <a href="/answers/{{this._id}}/comment" class="btn btn-info">Comment</a>
+
+                        <form class="d-inline pl-2" action="/answers/{{this._id}}/vote" method="post">
+                            <button style="font-weight: 800; font-size: 18px" type="submit"
+                                    class="btn btn-outline-success">+
+                            </button>
+                            <input type="hidden" name="vote" value="upvote">
+                        </form>
+
+                        <form class="d-inline pl-2" action="/answers/{{this._id}}/vote" method="post">
+                            <button style="font-weight: 800; font-size: 18px" type="submit"
+                                    class="btn btn-outline-danger">-
+                            </button>
+                            <input type="hidden" name="vote" value="downvote">
+                        </form>
+
+                        <div class="ml-2">
+                            <span class="d-inline text-success">{{this.upvotes}}</span>/<span
+                                class="d-inline text-danger">{{this.downvotes}}</span>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <h4>Komentari</h4>
+                        {{#each this.comments}}
+                            <span class="d-block" style="font-size: 12px">{{this}}</span>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

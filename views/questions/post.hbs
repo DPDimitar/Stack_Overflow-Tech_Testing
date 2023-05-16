@@ -1,0 +1,69 @@
+<header class="mb-5">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/questions/">Stack Overflow</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/questions/myquestions">Mine Stack</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/questions/hotquestions">Hot Stack</a>
+                    </li><li class="nav-item">
+                        <a class="nav-link" href="/questions/post">Post Stack Question</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/login">Prijava</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/register">Registracija</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/profile">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/logout">Odjava</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <form action="/questions" method="post">
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInput">Title</label>
+                <input type="text" class="form-control mb-2" required name="title" id="inlineFormInput" placeholder="What is this">
+            </div>
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInput3">Description</label>
+                <textarea type="text" class="form-control mb-2" required name="description" id="inlineFormInput3">
+                </textarea>
+            </div>
+            <div class="col-auto">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="tag" value="Spletno programiranje" id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1">Spletno programiranje</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="tag" value="SIS" id="customCheck2">
+                    <label class="custom-control-label" for="customCheck2">SIS</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="tag" value="APS" id="customCheck3">
+                    <label class="custom-control-label" for="customCheck3">APS</label>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
